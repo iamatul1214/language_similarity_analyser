@@ -1,6 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 
@@ -64,12 +65,20 @@ def calculate_similarity(text_1,text_2):
     jaccard = jaccard_similarity(text_1=text_1,text_2=text_2)
     dice = dice_coefficient(text_1=text_1,text_2=text_2)
 
+    similarity_scores = [cosine,jaccard,dice]
     cosine = f"{cosine}%"
     jaccard = f"{jaccard}%"
     dice = f"{dice}%"
-    
+
     similarity_df = pd.DataFrame({"cosine_similarity":[cosine],"jaccard_coefficeint":[jaccard],
                                   "dice_coefficeint":[dice]})
-    # similarity_df = [cosine,jaccard,dice]
-    return similarity_df
+    labels = ["cosine similarity","jaccard coefficient","dice coefficient"]
+    # similarity_df = similarity_df.T
+    plt.figure(figsize=(8, 6))
+    plt.bar(labels, similarity_scores, color='blue')
+    plt.xlabel('metrics')
+    plt.ylabel('similarity scores')
+    plt.title('Comparison of Similarity Scores')
+    plt.legend()
 
+    return similarity_df,plt

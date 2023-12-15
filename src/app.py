@@ -23,13 +23,14 @@ def main():
             sentences_lang2 = sentences_lang2.split('\n')
             
             # Calculate similarity
-            similarity_scores = calculate_similarity(sentences_lang1, sentences_lang2)
+            similarity_scores,plt = calculate_similarity(sentences_lang1, sentences_lang2)
             # similarity_scores = "Not yet implemented.."
             print(similarity_scores)
             
             # Display similarity result
             st.header("Similarity Result")
-            st.text(similarity_scores)
+            st.dataframe(similarity_scores)
+            st.pyplot(plt)
         else:
             st.warning("Please enter sentences in both languages.")
 
