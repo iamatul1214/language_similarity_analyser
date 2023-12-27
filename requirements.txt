@@ -3,3 +3,5 @@ sklearn
 numpy
 matplotlib
 plotly
+textdistance
+ipykernel
